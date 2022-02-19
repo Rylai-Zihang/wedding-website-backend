@@ -1,0 +1,16 @@
+{
+  "name": "wedding-website-backend",
+  "version": "1.0.0",
+  "repository": "https://github.com/Rylai-Zihang/wedding-website-backend.git",
+  "author": "Zihang He <rylaihzh@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon app.ts"
+  },
+  "dependencies": {
+    "koa": "^2.13.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
