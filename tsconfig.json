@@ -1,14 +1,19 @@
+// https://www.typescriptlang.org/tsconfig
+// or
+// https://www.tslang.cn/docs/handbook/compiler-options.html
 {
   "compilerOptions": {
     "module": "commonjs",
-    "declaration": false,
     "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "target": "es6",
-    "sourceMap": false,
-    "outDir": "./dist",
-    "baseUrl": "./"
+    "outDir": "dist",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "esModuleInterop": false
   },
+  "include": ["src/**/*.ts", "typings/*.ts"],
   "exclude": ["node_modules"]
 }

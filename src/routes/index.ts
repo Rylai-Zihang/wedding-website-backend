@@ -1,14 +1,10 @@
 import homeController from '../controllers/homeController'
+import { HttpMethods } from '../typings'
 
 export default [
   {
-    path: '/',
-    method: 'get',
-    action: homeController.hello
-  },
-  {
-    path: '/aa',
-    method: 'get',
-    action: homeController.helloAaaa
+    path: '/guests',
+    method: 'get' as HttpMethods,
+    action: homeController.getAllGuests
   }
 ]
