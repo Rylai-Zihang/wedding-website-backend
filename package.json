@@ -5,7 +5,8 @@
   "author": "Zihang He <rylaihzh@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "prod":"ts-node -r tsconfig-paths/register src/app.ts"
   },
   "dependencies": {
     "koa": "^2.13.4",
