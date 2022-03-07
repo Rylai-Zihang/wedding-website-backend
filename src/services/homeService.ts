@@ -1,6 +1,5 @@
-import { query } from '../db'
-import sql from '../db/sql'
-
+import knex from '../db/connection'
+import { Guest } from '../typings'
 
 export default class HomeService {
   hello = () => {
@@ -8,18 +7,19 @@ export default class HomeService {
   }
 
   getAllGuests = () => {
-    const sql = 'select * from guests'
-    return new Promise(async resolve => {
-      const data = await query(sql)
-      resolve(data)
-    })
+    return knex('guests').select('*')
   }
 
-  createGuest = () => {
-    const sql = 'select * from guests'
-    return new Promise(async resolve => {
-      const data = await query(sql)
-      resolve(data)
-    })
+  createGuest = (guest: Guest) => {
+    return knex('guests')
+      .insert(guest)
+      .returning('*')
+  }
+
+  deleteGuest = (id: number) => {
+    return knex('guests')
+      .del()
+      .where({ id })
+      .returning('*')
   }
 }

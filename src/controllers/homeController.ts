@@ -1,4 +1,4 @@
-import { Context } from 'koa';
+import { Context } from 'koa'
 import HomeService from '../services/homeService'
 
 class HomeController {
@@ -13,7 +13,11 @@ class HomeController {
   }
 
   createGuest = async (ctx: Context) => {
-    ctx.body = await this.service.createGuest()
+    ctx.body = await this.service.createGuest(ctx.request.body)
+  }
+
+  deleteGuest = async (ctx: Context) => {
+    ctx.body = await this.service.deleteGuest(ctx.params.id)
   }
 }
 
