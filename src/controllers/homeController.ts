@@ -1,5 +1,4 @@
 import { Context } from 'koa';
-import { query } from '../db'
 import HomeService from '../services/homeService'
 
 class HomeController {
@@ -10,9 +9,11 @@ class HomeController {
   }
 
   getAllGuests = async (ctx: Context) => {
-    const sql = 'select * from guests'
-    const data = await query(sql)
-    ctx.body = data
+    ctx.body = await this.service.getAllGuests()
+  }
+
+  createGuest = async (ctx: Context) => {
+    ctx.body = await this.service.createGuest()
   }
 }
 
