@@ -1,6 +1,6 @@
 version: '3'
 
-services:  
+services:
   backend:
     build: .
     ports:
@@ -10,7 +10,7 @@ services:
   db:
     image: postgres
     healthcheck:
-      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "postgres" ]
+      test: ['CMD', 'pg_isready', '-q', '-d', 'postgres', '-U', 'postgres']
       timeout: 45s
       interval: 10s
       retries: 10
@@ -25,5 +25,3 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=2300
       - APP_DB_NAME=wedding
-    
-
