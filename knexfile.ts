@@ -22,9 +22,10 @@ const development = {
 const production = {
   client: 'pg',
   connection: {
-    database: 'my_db',
-    user: 'username',
-    password: 'password'
+    host: 'db',
+    user: 'postgres',
+    password: '2300',
+    database: 'wedding'
   },
   pool: {
     min: 2,

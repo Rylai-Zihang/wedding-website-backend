@@ -1,8 +1,16 @@
 version: '3'
 
 services:
+  web:
+    build: ../wedding-website
+    ports:
+      - 80:3002
+    depends_on:
+      - backend
   backend:
     build: .
+    environment:
+      - NODE_ENV=production
     ports:
       - 3001:3001
     depends_on:
