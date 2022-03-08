@@ -1,12 +1,16 @@
 version: '3'
 
 services:
-  web:
-    build: ../wedding-website
+  nginx:
+    restart: always
+    image: nginx
     ports:
-      - 80:3002
-    depends_on:
-      - backend
+      - 80:80
+    volumes:
+      # - ../wedding-website/conf/1_domain.cn_bundle.crt:/etc/nginx/1_domain.cn_bundle.crt
+      # - ../wedding-website/conf/2_domain.cn.key:/etc/nginx/2_domain.cn.key
+      - ../wedding-website/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ../wedding-website/dist:/usr/share/nginx/wwwroot
   backend:
     build: .
     environment:
