@@ -10,7 +10,13 @@ services:
       # - ../wedding-website/conf/1_domain.cn_bundle.crt:/etc/nginx/1_domain.cn_bundle.crt
       # - ../wedding-website/conf/2_domain.cn.key:/etc/nginx/2_domain.cn.key
       - ../wedding-website/conf/nginx.conf:/etc/nginx/nginx.conf
-      - ../wedding-website/dist:/usr/share/nginx/wwwroot
+      - static-content:/usr/share/nginx/wwwroot/
+    depends_on:
+      - web
+  web:
+    build: ../wedding-website
+    volumes:
+      - static-content:/usr/src/app/wedding-website/dist
   backend:
     build: .
     environment:
@@ -37,3 +43,5 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=2300
       - APP_DB_NAME=wedding
+volumes:
+  static-content:
