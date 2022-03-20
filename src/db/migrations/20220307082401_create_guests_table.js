@@ -12,8 +12,8 @@ exports.up = function(knex) {
       .string('name')
       .notNullable()
       .unique()
-    table.string('phone')
-    table.integer('extras')
+    table.integer('number')
+    table.string('extras')
     table.boolean('need_accommodation').notNullable()
   })
 }

@@ -11,6 +11,11 @@ export default [
   },
   {
     path: `${BASE_URL}/guest`,
+    method: 'get' as HttpMethods,
+    action: homeController.getGuestByName
+  },
+  {
+    path: `${BASE_URL}/guest`,
     method: 'post' as HttpMethods,
     action: homeController.createGuest
   },

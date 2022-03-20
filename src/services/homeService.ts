@@ -10,6 +10,10 @@ export default class HomeService {
     return knex('guests').select('*')
   }
 
+  getGuestByName = (name: string) => {
+    return knex('guests').select('*').where({'name': name})
+  }
+
   createGuest = (guest: Guest) => {
     return knex('guests')
       .insert(guest)
