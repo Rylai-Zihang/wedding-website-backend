@@ -1,16 +1,16 @@
 # wedding-website-backend
 
-# build docker images
+### build docker images
 docker-compose build
 
-# run
+### run
 docker-compose up -d
 
-# stop
+### stop
 docker-compose stop
 
-# log
+### log
 docker-compose logs
 
-# delete all volume
+### delete all volume
 docker-compose down --volumes
