@@ -1,2 +1,2 @@
 # wedding-website-backend
-Backend project for our wedding invitation.
+Backend project for the wedding invitation developed by Rylai and Everett
