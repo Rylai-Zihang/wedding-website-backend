@@ -5,6 +5,11 @@ const BASE_URL = '/wedding/v1'
 
 export default [
   {
+    path: `/`,
+    method: 'get' as HttpMethods,
+    action: homeController.hello
+  },
+  {
     path: `${BASE_URL}/guests`,
     method: 'get' as HttpMethods,
     action: homeController.getAllGuests
