@@ -22,7 +22,7 @@ export default [
   {
     path: `${BASE_URL}/guest`,
     method: 'post' as HttpMethods,
-    action: homeController.createGuest
+    action: homeController.createOrUpdateGuest
   },
   {
     path: `${BASE_URL}/guest/:id`,

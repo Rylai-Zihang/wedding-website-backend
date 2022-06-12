@@ -70,10 +70,10 @@ class HomeController {
     }
   }
 
-  createGuest = async (ctx: Context) => {
+  createOrUpdateGuest = async (ctx: Context) => {
     console.log(ctx.request.body)
     if (check(ctx, 'invitationCode')) {
-      ctx.body = await this.service.createGuest(ctx.request.body)
+      ctx.body = this.service.createOrUpdateGuest(ctx.request.body)
     }
   }
 
