@@ -8,7 +8,7 @@ interface KnexConfig {
 
 type Guest = {
   name: string
-  number?: number
+  number?: string
   extras?: string
   need_accommodation?: boolean
 }
