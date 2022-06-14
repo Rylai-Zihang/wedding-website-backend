@@ -1,45 +1,57 @@
 import { Context } from 'koa'
+import { OK_MESSAGE } from '../constants'
 import HomeService from '../services/homeService'
+import { check } from '../utils'
 
 class HomeController {
   private service: HomeService = new HomeService()
 
-  hello = async (ctx: Context) => {
-    ctx.body = await this.service.hello()
+  hello = async (ctx: Context): Promise<void> => {
+    const data = await this.service.hello()
+    ctx.body = {
+      code: 200,
+      message: OK_MESSAGE,
+      data
+    }
   }
 
-  getAllGuests = async (ctx: Context) => {
-    if(ctx.request.query['token'] !== 'asd421asd421'){
-      ctx.response.status = 403
-      ctx.body = '你想做什么？保护宾客隐私是我们该做的!'
-    } else {
-      ctx.body = await this.service.getAllGuests()
+  getAllGuests = async (ctx: Context): Promise<void> => {
+    const data = await this.service.getAllGuests()
+    ctx.body = {
+      code: 200,
+      message: OK_MESSAGE,
+      data
     }
   }
 
   getGuestByName = async (ctx: Context) => {
-    if(ctx.request.query['token'] !== 'asd421asd421'){
-      ctx.response.status = 403
-      ctx.body = '你想做什么？保护宾客隐私是我们该做的!'
-    } else {
-      const name = ctx.request.query['name']
-      ctx.body = await this.service.getGuestByName(name as string)
+    const name = ctx.request.query['name']
+    const data = await this.service.getGuestByName(name as string)
+    ctx.body = {
+      code: 200,
+      message: OK_MESSAGE,
+      data
     }
   }
 
-  createGuest = async (ctx: Context) => {
-    // console.log(JSON.stringify(ctx.request))
-    console.log(ctx.request.body)
-    if(ctx.request.body['invitation_code'] !== '180325') {
-      ctx.response.status = 403
-      ctx.body = "错误的邀请码"
-    } else {
-      ctx.body = await this.service.createGuest(ctx.request.body)
+  createOrUpdateGuest = async (ctx: Context) => {
+    if (check(ctx, 'invitation_code')) {
+      const data = this.service.createOrUpdateGuest(ctx.request.body)
+      ctx.body = {
+        code: 200,
+        message: OK_MESSAGE,
+        data
+      }
     }
   }
 
   deleteGuest = async (ctx: Context) => {
-    ctx.body = await this.service.deleteGuest(ctx.params.id)
+    const data = await this.service.deleteGuest(ctx.params.id)
+    ctx.body = {
+      code: 200,
+      message: OK_MESSAGE,
+      data
+    }
   }
 }
 

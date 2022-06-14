@@ -3,7 +3,9 @@ import { Guest } from '../typings'
 
 export default class HomeService {
   hello = () => {
-    return new Promise(resolve => resolve('hello world'))
+    return new Promise(resolve =>
+      resolve('Hello and welcome to visit our backend service')
+    )
   }
 
   getAllGuests = () => {
@@ -11,13 +13,36 @@ export default class HomeService {
   }
 
   getGuestByName = (name: string) => {
-    return knex('guests').select('*').where({'name': name})
+    return knex('guests')
+      .select('*')
+      .where({ name: name })
   }
 
-  createGuest = (guest: Guest) => {
-    return knex('guests')
-      .insert(guest)
-      .returning('*')
+  createOrUpdateGuest = async (guest: Guest) => {
+    const guestList = await knex<Guest>('guests')
+      .select()
+      .where('name', guest.name)
+    const { name, number, extras, need_accommodation, invitation_code } = guest
+    if (guestList.length == 0) {
+      return knex('guests')
+        .insert({
+          name,
+          number,
+          extras,
+          need_accommodation,
+          invitation_code
+        })
+        .returning('*')
+    } else {
+      return knex('guests')
+        .update({
+          number,
+          extras,
+          need_accommodation,
+          invitation_code
+        })
+        .where('name', guest.name)
+    }
   }
 
   deleteGuest = (id: number) => {
