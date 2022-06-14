@@ -1,5 +1,8 @@
 import { Context } from 'koa'
-import { CHECK_BODY_MAP as checkBodyMap, CHECK_MAP as checkMap } from '../constants'
+import {
+  CHECK_BODY_MAP as checkBodyMap,
+  CHECK_MAP as checkMap
+} from '../constants'
 import { CheckKey } from '../typings'
 
 function check(ctx: Context, key: CheckKey): boolean {
@@ -25,6 +28,5 @@ function check(ctx: Context, key: CheckKey): boolean {
     return true
   }
 }
-
 
 export { check }

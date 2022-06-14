@@ -8,8 +8,8 @@ type Guest = {
   name: string
   number?: string
   extras: string
-  need_accommodation: boolean,
-  invitation_code: string,
+  need_accommodation: boolean
+  invitation_code: string
   message?: string
 }
 
@@ -26,11 +26,19 @@ type CheckMap = {
 type HTTPStatus = 200 | 403 | 500
 
 type Result<T> = {
-    code: HTTPStatus,
-    message: string,
-    data: T
+  code: HTTPStatus
+  message: string
+  data: T
 }
 
 type CheckBodyMap = Record<HttpMethods, 'body' | 'query'>
 
-export { HttpMethods, KnexConfig, Guest, CheckKey, CheckMap, CheckBodyMap, Result }
+export {
+  HttpMethods,
+  KnexConfig,
+  Guest,
+  CheckKey,
+  CheckMap,
+  CheckBodyMap,
+  Result
+}
