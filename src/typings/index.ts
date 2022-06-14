@@ -1,5 +1,3 @@
-import { BaseResponse } from 'koa'
-
 type HttpMethods = 'get' | 'post' | 'put' | 'delete'
 
 interface KnexConfig {
@@ -9,31 +7,30 @@ interface KnexConfig {
 type Guest = {
   name: string
   number?: string
-  extras?: string
-  need_accommodation?: boolean
+  extras: string
+  need_accommodation: boolean,
+  invitation_code: string,
+  message?: string
 }
 
-type CheckKey = 'token' | 'invitationCode'
+type CheckKey = 'token' | 'invitation_code'
 
-type CheckMapType = {
+type CheckMap = {
   [K in CheckKey]: {
     checkBasis: string[]
     errorMessage: string
-    status: number
     type: HttpMethods
   }
 }
 
-type ResponseIndex = keyof BaseResponse
+type HTTPStatus = 200 | 403 | 500
 
-type CheckFieldMap = Record<HttpMethods, ResponseIndex>
-
-export {
-  HttpMethods,
-  KnexConfig,
-  Guest,
-  CheckKey,
-  CheckMapType,
-  CheckFieldMap,
-  ResponseIndex
+type Result<T> = {
+    code: HTTPStatus,
+    message: string,
+    data: T
 }
+
+type CheckBodyMap = Record<HttpMethods, 'body' | 'query'>
+
+export { HttpMethods, KnexConfig, Guest, CheckKey, CheckMap, CheckBodyMap, Result }

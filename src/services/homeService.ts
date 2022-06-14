@@ -21,23 +21,24 @@ export default class HomeService {
   createOrUpdateGuest = async (guest: Guest) => {
     const guestList = await knex<Guest>('guests')
       .select()
-      .where('name', guest.name);
+      .where('name', guest.name)
+      const { name, number, extras, need_accommodation, invitation_code } = guest
       if(guestList.length == 0) {
         return knex('guests').insert({
-          'name': guest.name,
-          'number':guest.number,
-          'extras':guest.extras,
-          'need_accommodation':guest.need_accommodation
+          name,
+          number,
+          extras,
+          need_accommodation,
+          invitation_code
         }).returning('*')
       } else {
         return knex('guests').update({
-          'name': guest.name,
-          'number':guest.number,
-          'extras':guest.extras,
-          'need_accommodation':guest.need_accommodation
+            number,
+            extras,
+            need_accommodation,
+            invitation_code
         }).where('name', guest.name)
       }
-    
   }
 
   deleteGuest = (id: number) => {
