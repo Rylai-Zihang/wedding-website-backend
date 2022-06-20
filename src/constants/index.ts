@@ -2,7 +2,7 @@ import { CheckMap, CheckBodyMap } from '../typings'
 
 const CHECK_MAP: CheckMap = {
   token: {
-    type: 'get',
+    type: 'header',
     checkBasis: ['asd421asd421'],
     errorMessage: '你想做什么？保护宾客隐私是我们该做的!'
   },
@@ -17,7 +17,8 @@ const CHECK_BODY_MAP: CheckBodyMap = {
   get: 'query',
   post: 'body',
   put: 'body',
-  delete: 'body'
+  delete: 'body',
+  header: 'headers'
 }
 
 const OK_MESSAGE = 'OK'

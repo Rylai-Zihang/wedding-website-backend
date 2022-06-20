@@ -19,7 +19,7 @@ type CheckMap = {
   [K in CheckKey]: {
     checkBasis: string[]
     errorMessage: string
-    type: HttpMethods
+    type: HttpMethods | "header"
   }
 }
 
@@ -31,7 +31,7 @@ type Result<T> = {
   data: T
 }
 
-type CheckBodyMap = Record<HttpMethods, 'body' | 'query'>
+type CheckBodyMap = Record<string, 'body' | 'query' | 'headers'>
 
 export {
   HttpMethods,
