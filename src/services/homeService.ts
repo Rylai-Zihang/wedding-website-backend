@@ -19,10 +19,17 @@ export default class HomeService {
   }
 
   createOrUpdateGuest = async (guest: Guest) => {
+    const {
+        name,
+        number,
+        extras,
+        need_accommodation,
+        invitation_code,
+        message
+      } = guest
     const guestList = await knex<Guest>('guests')
       .select()
-      .where('name', guest.name)
-    const { name, number, extras, need_accommodation, invitation_code } = guest
+      .where('name', name)
     if (guestList.length == 0) {
       return knex('guests')
         .insert({
@@ -30,7 +37,8 @@ export default class HomeService {
           number,
           extras,
           need_accommodation,
-          invitation_code
+          invitation_code,
+          message
         })
         .returning('*')
     } else {
@@ -39,7 +47,8 @@ export default class HomeService {
           number,
           extras,
           need_accommodation,
-          invitation_code
+          invitation_code,
+          message
         })
         .where('name', guest.name)
     }
