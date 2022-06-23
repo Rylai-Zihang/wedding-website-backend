@@ -8,7 +8,7 @@ const development = {
   connection: {
     host: '127.0.0.1',
     user: 'postgres',
-    password: '12345',
+    password: '2300',
     database: 'wedding'
   },
   migrations: {
